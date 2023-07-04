@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/output3.css') }}">
+    <title>Output Page</title>
+</head>
+<body>
+    <section>
+        <div class="output-box">
+            {% if video_path %}
+                <h2>Output Video Frames</h2>
+                <div class="output-image">
+                    {% for frame_num in range(frame_counter) %}
+                        <img src="{{ url_for('display', filename='frame_' + frame_num|string + '.jpg') }}?{{ timestamp }}" alt="Frame {{ frame_num }}" width="600" height="400">
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST" action="/returvideo" enctype="multipart/form-data">
+                <input class="button" type="submit" value="Back to Home">
+            </form>
+        </div>
+    </section>
+</body>
+</html>
